@@ -1,0 +1,22 @@
+info:
+  name: POST CLIENTES
+  type: http
+
+http:
+  method: POST
+  url: http://localhost:3000/
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Iago Damazio",
+        "email": "iagobrdab@sexo.org",
+        "senha": "orgédeorgia"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,81 +1,73 @@
 CREATE DATABASE IF NOT EXISTS projeto_integrador;
 USE projeto_integrador;
 
--- 1. CLIENTE
 CREATE TABLE cliente (
-    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL
+	id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	email VARCHAR (100) NOT NULL UNIQUE,
+	senha VARCHAR(255) NOT NULL,
+	data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. CADASTRO
-CREATE TABLE cadastro (
-    id_cadastro INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL UNIQUE,
-    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+CREATE TABLE endereco (
+	id_endereco INT AUTO_INCREMENT PRIMARY KEY,
+	id_cliente INT NOT NULL,
+	rua VARCHAR(150) NOT NULL,
+	numero VARCHAR(20) NOT NULL,
+	cidade VARCHAR(50) NOT NULL,
+	cep VARCHAR(10) NOT NULL,
+	FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente) ON DELETE CASCADE
 );
 
--- 3. CONSULTA
-CREATE TABLE consulta (
-    id_consulta INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL,
-    descricao VARCHAR(255),
-    data_consulta DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+CREATE TABLE categoria (
+	id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL UNIQUE
 );
 
--- 4. LOGIN
-CREATE TABLE login (
-    id_login INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL UNIQUE,
-    usuario VARCHAR(50) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+CREATE TABLE produto (
+	id_produto INT AUTO_INCREMENT PRIMARY KEY,
+	id_categoria INT NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	preco DECIMAL(10,2) NOT NULL,
+	estoque INT NOT NULL DEFAULT 0,
+	FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 );
 
--- 5. COMPRA
-CREATE TABLE compra (
-    id_compra INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL,
-    data_compra DATETIME DEFAULT CURRENT_TIMESTAMP,
-    valor_total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-    status VARCHAR(30) NOT NULL DEFAULT 'Pendente',
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+CREATE TABLE carrinho (
+	id_carrinho INT AUTO_INCREMENT PRIMARY KEY,
+	id_cliente INT NOT NULL,
+	id_produto INT NOT NULL,
+	quantidade INT NOT NULL DEFAULT 1,
+	FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente) ON DELETE CASCADE,
+	FOREIGN KEY (id_produto) REFERENCES produto(id_produto) ON DELETE CASCADE
 );
 
--- 6. VENDA
-CREATE TABLE venda (
-    id_venda INT AUTO_INCREMENT PRIMARY KEY,
-    id_compra INT NOT NULL UNIQUE,
-    data_venda DATETIME DEFAULT CURRENT_TIMESTAMP,
-    valor_total DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (id_compra) REFERENCES compra(id_compra)
+CREATE TABLE pedido (
+	id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+	id_cliente INT NOT NULL,
+	data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+	valor_total DECIMAL (10,2) NOT NULL DEFAULT 0.00,
+	status VARCHAR(30) NOT NULL DEFAULT 'Pendente',
+	FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 );
 
--- 7. NOTA FISCAL
-CREATE TABLE nota_fiscal (
-    id_nota INT AUTO_INCREMENT PRIMARY KEY,
-    id_compra INT NOT NULL UNIQUE,
-    id_cliente INT NOT NULL,
-    numero VARCHAR(50) NOT NULL UNIQUE,
-    data_emissao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    valor_total DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (id_compra) REFERENCES compra(id_compra),
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+CREATE TABLE item_pedido(
+	id_item INT AUTO_INCREMENT PRIMARY KEY,
+	id_pedido INT NOT NULL,
+	id_produto INT NOT NULL,
+	quantidade INT NOT NULL,
+	preco_unitario DECIMAL (10,2) NOT NULL,
+	FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido) ON DELETE CASCADE,
+	FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
 );
 
--- 8. CARRINHO DE COMPRA
-CREATE TABLE carrinho_de_compra (
-    id_carrinho INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL,
-    produto VARCHAR(100) NOT NULL,
-    categoria VARCHAR(100) NOT NULL,
-    quantidade INT NOT NULL DEFAULT 1,
-    preco DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+CREATE TABLE nota_fiscal(
+	id_nota INT AUTO_INCREMENT PRIMARY KEY,
+	id_pedido INT NOT NULL UNIQUE,
+	numero_nota VARCHAR(50) NOT NULL UNIQUE,
+	data_emissao DATETIME DEFAULT CURRENT_TIMESTAMP,
+	valor_total DECIMAL (10,2) NOT NULL,
+	FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 );
-
--- CONFERIR AS TABELAS
+	
 SHOW TABLES;

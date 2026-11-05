@@ -22,76 +22,88 @@ app.get('/', (req, res) => {
 
 // -------- ROTAS ----------
 
-// ----------------------------
-// ######## CADASTROS #########
-// ----------------------------
+// ROTA PARA LISTAR TODOS OS CLIENTE
 
-// ROTA PARA LISTAR TODOS OS CADASTROS
-
-app.get('/cadastros', async (req, res) => {
-    const sql = 'SELECT * FROM cadastro';
+app.get('/clientes', async (req, res) => {
+    const sql = 'SELECT * FROM cliente';
     try {
         const [resp] = await conn.query(sql);
+        if(resp.length === 0)
+        {
+            return res.status(404).json({erro: "Clientes não encontrados ou não há nenhum cliente cadastrado no momento!"});
+        }
         return res.status(200).json(resp);
     } catch (erro) {
         console.error(erro);
-        return res.status(500).json({ erro: "Erro interno ao retornar todos os cadastros!" });
+        return res.status(500).json({ erro: "Erro ao tentar listar todos os clientes!" });
     }
 });
 
-// ROTA PARA LISTAR APENAS UM CADASTRO VIA ID
 
-app.get('/cadastros/:id', async (req, res) => {
+// ROTA PARA LISTAR APENAS UM CLIENTE VIA ID
+app.get('/clientes/:id', async (req, res) => {
     const id = Number(req.params.id);
-    const sql = 'SELECT * FROM cadastro WHERE id_cadastro = ?'
+    const sql = 'SELECT * FROM cliente WHERE id_cliente = ?';
     try {
         const [resp] = await conn.query(sql, [id]);
         if (resp.length === 0) {
-            return res.status(404).json({ erro: "Cadastro não encontrado ou inexistente!" });
+            return res.status(404).json({ erro: "Cliente não encontrado ou inexistente!" });
         }
-        return res.status(201).json(resp);
+        return res.status(200).json(resp);
     } catch (erro) {
         console.error(erro);
-        return res.status(500).json({erro: "Erro interno ao tentar encontrar cadastro específico!"});
+        return res.status(500).json({ erro: "Erro ao tentar listar um cliente específico!" })
     }
 });
 
-// ROTA PARA REALIZAR UM CADASTRO
-// ---
-/* Relações:
-    criar cliente: nome, email senha
-    -- id_cliente
-    criar cadastro
-    -- conectar id_cliente local com o id_cliente estrangeiro
-    criar login
-    -- conectar id_cliente local com o id_cliente estrangeiro
-    -- conectar usuario (email) e senha locais com email e senha estrangeiros
-*/
-// ---
-
-app.post('/cadastros', async (req, res) => {
-    const {nome, email, senha} = req.body;
-    if(!nome || !email || !senha) {
-        return res.status(400).json({erro: "Informe nome, email e senha para o cadastro!"});
+// ROTA PARA CADASTRAR UM CLIENTE
+app.post('/clientes', async (req, res) => {
+    const { nome, email, senha } = req.body;
+    if (!nome || !email || !senha) {
+        return res.status(400).json({ erro: "Informe nome, email e senha para o cadastro!" });
     }
+    const sql = 'INSERT INTO cliente (nome, email, senha) VALUES (?, ?, ?)';
     try {
-    const sqlCliente = 'INSERT INTO cliente (nome, email, senha) VALUES (?, ?, ?)'
-    const [respCliente] = await conn.query(sqlCliente, [nome, email, senha]);
-    const idRetornado = respCliente.insertId;
-
-    const sqlCadastro = 'INSERT INTO cadastro (id_cliente) VALUES (?)';
-    await conn.query(sqlCadastro, [idRetornado]);
-
-    const sqlLogin = 'INSERT INTO login (id_cliente, usuario, senha) VALUES (?, ?, ?)';
-    await conn.query(sqlLogin, [idRetornado, email, senha]);
-
-    return res.status(201).json({mensagem: "Cadastro realizado com sucesso!",
-        id: respCliente.insertId
-    }); // pfv funciona se não eu me MATO
-
+        const [resp] = await conn.query(sql, [nome, email, senha]);
+        return res.status(201).json({mensagem: "Usuário cadastrado com sucesso!",
+            resp
+        });
     } catch (erro) {
         console.error(erro);
-        return res.status(500).json({erro: "Erro interno ao tentar realizar cadastro!"});
+        return res.status(500).json({erro: "Erro interno ao tentar cadastrar um usuário!"});
+    }
+})
+
+// ROTA PARA ATUALIZAR UM CLIENTE
+app.put('/clientes/:id', async (req, res) => {
+    const { nome, email, senha } = req.body;
+    if (!nome || !email || !senha) {
+        return res.status(400).json({ erro: "Informe nome, email e senha para atualizar informações!" });
+    }
+    const sql = 'UPDATE cliente SET nome = ?, email = ?, senha = ?';
+    try{
+        const [resp] = await conn.query(sql, [nome, email, senha]);
+        return res.status(201).json({mensagem: "Usuário atualizado com sucesso!",
+            resp
+        });
+    } catch (erro) {
+        console.error(erro);
+        return res.status(500).json({erro: "Erro ao tentar atualizar um usuário!"});
+    }
+});
+
+// ROTA PARA EXCLUIR UM CLIENTE DO BANCO DE DADOS
+app.delete('/clientes/:id', async (req, res) => {
+    const id = Number(req.params.id);
+    const sql = 'DELETE FROM cliente WHERE id_cliente = ?'
+    try{
+        const [resp] = await conn.query(sql, [id]);
+        return res.status(201).json({mensagem: "Usuário excluido com sucesso!",
+            resp
+        });
+    } catch (erro) {
+        console.error(erro);
+        return res.status(500).json({erro: "Erro interno ao tentar excluir um usuário!"});
     }
 });
 
