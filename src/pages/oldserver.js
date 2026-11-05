@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import conectarBanco from './db.js';
 
+
 // recuperar variáveis do .env
 dotenv.config();
 // criar o servidor
@@ -13,7 +14,6 @@ app.use(express.static('./pages'));
 // define a porta do servidor que será hosteado
 const PORT = process.env.PORT;
 // variável de conexão
-const conn = conectarBanco();
 
 // página inicial frontend
 app.get('/', (req, res) => {
@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
 
 // -------- ROTAS ----------
 
+
+// ---------------------------
+// ######## CLIENTES #########
+// ---------------------------
 // ROTA PARA LISTAR TODOS OS CLIENTE
 
 app.get('/clientes', async (req, res) => {
@@ -107,6 +111,20 @@ app.delete('/clientes/:id', async (req, res) => {
     }
 });
 
+// ---------------------------
+// ######## PRODUTOS #########
+// ---------------------------
+// ROTA PARA LISTAR TODOS OS PRODUTOS
+app.get('/produtos', async (req, res) => {
+    const sql = 'SELECT * FROM produto';
+    try{
+        const [resp] = await conn.query(sql);
+        return res.status(200).json(resp);
+    } catch (erro) {
+        console.error(erro);
+        return res.status(500).json({erro: "Erro interno ao tentar listar todos os produtos!"});
+    }
+});
 // FAZ O SERVIDOR ESCUTAR
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);

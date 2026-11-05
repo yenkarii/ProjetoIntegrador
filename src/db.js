@@ -1,7 +1,6 @@
-import {json} from 'express';
+import "dotenv/config";
 import mysql from 'mysql2/promise';
 
-function conectarBanco() {
     const conn = mysql.createPool({
         host:process.env.DB_HOST,
         user:process.env.DB_USER,
@@ -9,7 +8,5 @@ function conectarBanco() {
         database:process.env.DB_NAME,
         port:process.env.DB_PORT
     });
-    return conn;
-}
 
-export default conectarBanco;
+export default conn;
