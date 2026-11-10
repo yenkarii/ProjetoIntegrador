@@ -1,0 +1,23 @@
+info:
+  name: PUT CATEGORIAS
+  type: http
+  seq: 5
+
+http:
+  method: PUT
+  url: http://localhost:3000/categorias/1
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Iago Damazio",
+        "email": "iagobrdab@sexo.org",
+        "senha": "orgédeorgia"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

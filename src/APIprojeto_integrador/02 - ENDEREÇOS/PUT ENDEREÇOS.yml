@@ -1,10 +1,11 @@
 info:
-  name: POST CLIENTES
+  name: PUT ENDEREÇOS
   type: http
+  seq: 5
 
 http:
-  method: POST
-  url: http://localhost:3000/
+  method: PUT
+  url: http://localhost:3000/clientes/1
   body:
     type: json
     data: |-

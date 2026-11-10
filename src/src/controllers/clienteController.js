@@ -1,4 +1,3 @@
-import conn from '../../db';
 import * as clienteModel from '../models/clienteModel.js';
 
 export async function listar(req, res) {
@@ -45,12 +44,13 @@ export async function criar(req, res) {
 }
 
 export async function atualizar(req, res) {
+    const id = req.id || Number(req.params.id);
     const { nome, email, senha } = req.body ?? {};
     if (!nome || !email || !senha) {
-        return res.status(400).json({ erro: "Infome nome (até 100 characteres), email (até 100 caracteres) e senha (até 255 caracteres) para o cadastro!" });
+        return res.status(400).json({ erro: "Infome nome (até 100 characteres), email (até 100 caracteres) e senha (até 255 caracteres) para a atualização!" });
     }
     try {
-        const resp = await clienteModel.atualizar({ nome, email, senha });
+        const resp = await clienteModel.atualizar(id, { nome, email, senha });
 
         return res.status(201).json({
             mensagem: "Cliente atualizado com sucesso!",
@@ -58,7 +58,7 @@ export async function atualizar(req, res) {
         });
     } catch (erro) {
         console.error(erro);
-        return res.status(500).json({ erro: "Erro interno ao tentar cadastrar um cliente!" });
+        return res.status(500).json({ erro: "Erro interno ao tentar atualizar um cliente!" });
     }
 }
 
