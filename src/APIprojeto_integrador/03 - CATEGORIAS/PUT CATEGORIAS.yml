@@ -1,7 +1,7 @@
 info:
   name: PUT CATEGORIAS
   type: http
-  seq: 5
+  seq: 1
 
 http:
   method: PUT
@@ -10,9 +10,7 @@ http:
     type: json
     data: |-
       {
-        "nome": "Iago Damazio",
-        "email": "iagobrdab@sexo.org",
-        "senha": "orgédeorgia"
+        "nome": "Batons"
       }
   auth: inherit
 

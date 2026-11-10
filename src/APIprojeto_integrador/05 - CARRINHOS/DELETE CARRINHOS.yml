@@ -1,14 +1,10 @@
 info:
-  name: DEL CATEGORIAS
+  name: DELETE CARRINHOS
   type: http
-  seq: 5
 
 http:
   method: DELETE
-  url: http://localhost:3000/categorias/1
-  body:
-    type: json
-    data: ""
+  url: http://localhost:3000/carrinhos/1
   auth: inherit
 
 settings:

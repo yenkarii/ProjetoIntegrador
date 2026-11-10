@@ -27,7 +27,7 @@ export async function buscarPorId(req, res) {
 
 export async function criar(req, res) {
     const { nome } = req.body ?? {};
-    if (nome) {
+    if (!nome) {
         return res.status(400).json({ erro: "Informe nome (até 50 caracteres) para o cadastro!" });
     }
     try {
@@ -46,7 +46,7 @@ export async function criar(req, res) {
 export async function atualizar(req, res) {
     const id = req.id || Number(req.params.id);
     const { nome } = req.body ?? {};
-    if (nome) {
+    if (!nome) {
         return res.status(400).json({ erro: "Informe nome (até 50 caracteres) para a atualização!"});
     }
     try {

@@ -1,14 +1,11 @@
 info:
-  name: DEL ENDEREÇOS
+  name: GET PRODUTOS
   type: http
-  seq: 5
+  seq: 1
 
 http:
-  method: DELETE
-  url: http://localhost:3000/clientes/1
-  body:
-    type: json
-    data: ""
+  method: GET
+  url: http://localhost:3000/produtos/
   auth: inherit
 
 settings:

@@ -1,13 +1,13 @@
 import conn from "../../db.js";
 
 export async function listar(callback) {
-    const sql = 'SELECT * FROM endereco ORDER BY id_categoria';
+    const sql = 'SELECT * FROM categoria ORDER BY id_categoria';
     const [resp] = await conn.promise().query(sql);
     return resp;
 }
 
 export async function buscarPorId(id) {
-    const sql = 'SELECT * FROM endereco WHERE id_categoria = ?'
+    const sql = 'SELECT * FROM categoria WHERE id_categoria = ?'
     const [resp] = await conn.promise().query(sql, [id]);
     return resp;
 }

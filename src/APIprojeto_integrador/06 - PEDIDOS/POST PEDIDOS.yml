@@ -1,0 +1,23 @@
+info:
+  name: POST PEDIDOS
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:3000/pedidos/
+  body:
+    type: json
+    data: |-
+      {
+        "id_cliente": "2",
+        "valor_total": "25.12",
+        "status_pedido": "Pendente"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -5,14 +5,16 @@ info:
 
 http:
   method: PUT
-  url: http://localhost:3000/clientes/1
+  url: http://localhost:3000/enderecos/1
   body:
     type: json
     data: |-
       {
-        "nome": "Iago Damazio",
-        "email": "iagobrdab@sexo.org",
-        "senha": "orgédeorgia"
+        "id_cliente": "2",
+        "rua": "Rua da Putaria",
+        "numero": "69",
+        "cidade": "Carapicuíba",
+        "cep": "696969-696"
       }
   auth: inherit
 

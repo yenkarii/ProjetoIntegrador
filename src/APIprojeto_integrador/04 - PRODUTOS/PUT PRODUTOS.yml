@@ -1,0 +1,24 @@
+info:
+  name: PUT PRODUTOS
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: http://localhost:3000/produtos/1
+  body:
+    type: json
+    data: |-
+      {
+        "id_categoria": "1",
+        "nome": "Batons",
+        "preco": "21.20",
+        "estoque": "128"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

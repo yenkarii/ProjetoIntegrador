@@ -1,0 +1,24 @@
+info:
+  name: POST PRODUTOS
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:3000/produtos/
+  body:
+    type: json
+    data: |-
+      {
+        "id_categoria": "1",
+        "nome": "Batons",
+        "preco": "25.12",
+        "estoque": "128"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

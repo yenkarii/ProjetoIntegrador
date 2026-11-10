@@ -40,10 +40,10 @@ app.use('/clientes/', clienteRoutes);
 app.use('/enderecos/', enderecoRoutes);
 app.use('/categorias/', categoriaRoutes);
 app.use('/produtos/', produtoRoutes);
-app.use('/carrinho/', carrinhoRoutes);
+app.use('/carrinhos/', carrinhoRoutes);
 app.use('/pedidos/', pedidoRoutes);
-app.use('/itempedido/', itemPedidoRoutes);
-app.use('/notafiscal/', notaFiscalRoutes);
+app.use('/itens-pedidos/', itemPedidoRoutes);
+app.use('/notas-fiscais/', notaFiscalRoutes);
 
 // ------- FIM DAS ROTAS ----------------
 

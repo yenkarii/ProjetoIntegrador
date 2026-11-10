@@ -1,10 +1,21 @@
 info:
   name: POST ENDEREÇOS
   type: http
+  seq: 1
 
 http:
   method: POST
   url: http://localhost:3000/enderecos/
+  body:
+    type: json
+    data: |-
+      {
+        "id_cliente": "2",
+        "rua": "Rua da Putaria",
+        "numero": "69",
+        "cidade": "Carapicuíba",
+        "cep": "696969-696"
+      }
   auth: inherit
 
 settings:

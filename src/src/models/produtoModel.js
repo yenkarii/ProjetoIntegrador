@@ -19,7 +19,7 @@ export async function criar(dados) {
 }
 
 export async function atualizar(id, dados) {
-    const sql = 'UPDATE produto SET';
+    const sql = 'UPDATE produto SET id_categoria = ?, nome = ?, preco = ?, estoque = ?';
     const [resp] = await conn.promise().query(sql, [dados.id_categoria, dados.nome, dados.preco, dados.estoque]);
     return resp.affectedRows;
 }

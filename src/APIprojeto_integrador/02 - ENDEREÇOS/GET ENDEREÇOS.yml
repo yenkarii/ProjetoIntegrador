@@ -1,6 +1,7 @@
 info:
   name: GET ENDEREÇOS
   type: http
+  seq: 1
 
 http:
   method: GET
