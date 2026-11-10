@@ -1,0 +1,23 @@
+info:
+  name: POST NOTAS FISCAIS
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:3000/notas-fiscais/
+  body:
+    type: json
+    data: |-
+      {
+        "id_pedido": "2",
+        "numero_nota": "12",
+        "valor_total": "2.45"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

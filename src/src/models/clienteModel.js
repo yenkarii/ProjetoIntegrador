@@ -1,6 +1,6 @@
 import conn from "../../db.js";
 
-export async function listar(callback) {
+export async function listar() {
     const sql = 'SELECT * FROM cliente ORDER BY id_cliente';
     const [resp] = await conn.promise().query(sql);
     return resp;
@@ -19,10 +19,10 @@ export async function criar(dados) {
 }
 
 export async function atualizar(id, dados) {
-    const sql = 'UPDATE cliente SET nome = ?, email = ?, senha = ?';
-    const [resp] = await conn.promise().query(sql,[dados.nome, dados.email, dados.senha]);
+    const sql = 'UPDATE cliente SET nome = ?, email = ?, senha = ? WHERE id_cliente = ?';
+    const [resp] = await conn.promise().query(sql,[dados.nome, dados.email, dados.senha, id]);
     return resp.affectedRows;
-}
+}   
 
 export async function deletar(id) {
     const sql = 'DELETE FROM cliente WHERE id_cliente = ?';

@@ -1,6 +1,6 @@
 import conn from "../../db.js";
 
-export async function listar(callback) {
+export async function listar() {
     const sql = 'SELECT * FROM produto ORDER BY id_produto';
     const [resp] = await conn.promise().query(sql);
     return resp;

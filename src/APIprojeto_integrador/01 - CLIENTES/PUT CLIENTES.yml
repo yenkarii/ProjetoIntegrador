@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-        "nome": "Iago Damazio",
-        "email": "iagobrdab@sexo.org",
-        "senha": "orgédeorgia"
+        "nome": "Iago Bobão",
+        "email": "iagobobo@gmail.org",
+        "senha": "vivaatrollage"
       }
   auth: inherit
 
