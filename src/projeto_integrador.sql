@@ -70,4 +70,4 @@ CREATE TABLE nota_fiscal(
 	FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 );
 	
-SHOW TABLES;adg
+SHOW TABLES;
