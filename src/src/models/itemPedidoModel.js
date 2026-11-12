@@ -1,13 +1,30 @@
 import conn from "../../db.js";
 
 export async function listar() {
-    const sql = 'SELECT * FROM item_pedido ORDER BY id_item';
+    const sql = `SELECT ip.*,
+                    pr.nome AS produto,
+                    pe.id_pedido AS pedido
+                FROM item_pedido ip 
+                INNER JOIN produto pr
+                    ON ip.id_produto = pr.id_produto
+                INNER JOIN pedido pe
+                    ON ip.id_pedido = pe.id_pedido
+                ORDER BY ip.id_item`;
     const [resp] = await conn.promise().query(sql);
     return resp;
 }
 
 export async function buscarPorId(id) {
-    const sql = 'SELECT * FROM item_pedido WHERE id_item = ?';
+    const sql = `SELECT ip.*,
+                    pr.nome AS produto,
+                    pe.id_pedido AS pedido
+                FROM item_pedido ip 
+                INNER JOIN produto pr
+                    ON ip.id_produto = pr.id_produto
+                INNER JOIN pedido pe
+                    ON ip.id_pedido = pe.id_pedido
+                WHERE ip.id_item = ?
+                ORDER BY ip.id_item`;
     const [resp] = await conn.promise().query(sql, [id]);
     return resp;
 }
