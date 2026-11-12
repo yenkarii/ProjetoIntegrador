@@ -335,6 +335,91 @@ footer p {
     margin-top: 10px;
 }
 
+/* PÁGINA DE LOGIN */
+.pagina-login {
+    background: #EDE0D0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    background: #FFF9F1;
+    width: 100%;
+    max-width: 400px;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px #C9B29D;
+}
+
+.login-container h1 {
+    color: #795438;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-container h2 {
+    color: #49372B;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-container p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-container label {
+    display: block;
+    margin: 12px 0 6px;
+    color: #49372B;
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"],
+.login-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #C9B29D;
+    border-radius: 7px;
+    background: #FFFDF9;
+}
+
+.login-container .mostrar-senha {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 20px;
+    background: #795438;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-container button:hover {
+    background: #A47755;
+}
+
+.login-container .voltar {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.login-container a {
+    color: #795438;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 /* TELAS MENORES */
 @media (max-width: 900px) {
     #lista-produtos {
