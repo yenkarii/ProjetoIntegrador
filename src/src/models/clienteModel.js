@@ -1,5 +1,7 @@
 import conn from "../../db.js";
 
+// NÃO PRECISA DE INNER JOIN!
+
 export async function listar() {
     const sql = 'SELECT * FROM cliente ORDER BY id_cliente';
     const [resp] = await conn.promise().query(sql);
