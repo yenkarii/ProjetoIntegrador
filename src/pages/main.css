@@ -1,0 +1,367 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8faf6;
+    color: #333;
+}
+
+/* CABEÇALHO */
+header {
+    background: white;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    color: #527d50;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #527d50;
+}
+
+.botao, .botao-carrinho {
+    background: #527d50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* CARROSSEL */
+.carrossel {
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide.ativo {
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: brightness(60%);
+}
+
+.texto-slide {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: white;
+    max-width: 500px;
+}
+
+.texto-slide h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.texto-slide p {
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.seta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #527d50;
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.anterior {
+    left: 20px;
+}
+
+.proximo {
+    right: 20px;
+}
+
+.indicadores {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+
+.ponto {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.ponto.ativo {
+    background: #527d50;
+}
+
+/* BENEFÍCIOS */
+.beneficios {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 40px 20px;
+    text-align: center;
+    background: white;
+}
+
+.beneficio h3 {
+    color: #527d50;
+    margin-bottom: 10px;
+}
+
+/* TÍTULOS */
+.titulo-secao {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.titulo-secao h2 {
+    color: #304d30;
+    margin-bottom: 10px;
+}
+
+/* PRODUTOS */
+.produtos {
+    padding: 30px 5%;
+}
+
+#lista-produtos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.produto {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px #ddd;
+}
+
+.produto img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.produto h3 {
+    margin: 12px 0;
+    min-height: 40px;
+}
+
+.produto p {
+    color: #527d50;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.produto button, .item-carrinho button {
+    background: #527d50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.produto button {
+    width: 100%;
+}
+
+/* CARRINHO */
+.carrinho {
+    background: #eef4eb;
+    padding: 40px 8%;
+}
+
+#lista-carrinho {
+    max-width: 900px;
+    margin: auto;
+}
+
+.item-carrinho {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.resumo-carrinho {
+    text-align: right;
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+.resumo-carrinho h3 {
+    margin-bottom: 15px;
+    color: #304d30;
+}
+
+/* PAGAMENTO */
+.pagamento {
+    background: white;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #ddd;
+    text-align: center;
+}
+
+.pagamento h2 {
+    color: #527d50;
+    margin-bottom: 15px;
+}
+
+.pagamento select, .pagamento input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.pagamento button {
+    background: #527d50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* SOBRE */
+.sobre {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 60px 8%;
+    background: white;
+}
+
+.sobre-texto h2 {
+    color: #527d50;
+    margin-bottom: 15px;
+}
+
+.sobre-texto p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.sobre-imagem img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+}
+
+/* RODAPÉ */
+footer {
+    background: #304d30;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+footer p {
+    margin-top: 10px;
+}
+
+/* TELAS MENORES */
+@media (max-width: 900px) {
+    #lista-produtos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    header, .sobre {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #lista-produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .beneficios {
+        flex-direction: column;
+    }
+
+    .carrossel {
+        height: 350px;
+    }
+
+    .texto-slide h2 {
+        font-size: 27px;
+    }
+
+    .texto-slide p {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    #lista-produtos {
+        grid-template-columns: 1fr;
+    }
+}

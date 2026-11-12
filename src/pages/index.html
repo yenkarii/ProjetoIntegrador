@@ -1,12 +1,193 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST PAGE</title>
+    <title>BioCosmetics</title>
+
     <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-    <p>Hello World!</p>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="logo">
+            <h1> BioCosmetics</h1>
+        </div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#carrinho">🛒 Carrinho</a>
+        </nav>
+    </header>
+
+    <!-- CARROSSEL -->
+    <section class="carrossel" id="inicio">
+
+        <div class="slide ativo">
+            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=1200" alt="Cosméticos naturais">
+
+            <div class="texto-slide">
+                <h2>Beleza natural, cuidado de verdade!</h2>
+                <p>Cosméticos naturais para cuidar de você.</p>
+                <a href="#produtos" class="botao">Ver produtos</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=1200" alt="Produtos de cuidados pessoais">
+
+            <div class="texto-slide">
+                <h2>Cuide da sua pele!</h2>
+                <p>Encontre produtos para sua rotina de beleza.</p>
+                <a href="#produtos" class="botao">Comprar agora</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=1200" alt="Produtos de beleza">
+
+            <div class="texto-slide">
+                <h2>Beleza e sustentabilidade</h2>
+                <p>Escolhas conscientes para um futuro melhor.</p>
+                <a href="#sobre" class="botao">Conheça a loja</a>
+            </div>
+        </div>
+
+        <button class="seta anterior" onclick="mudarSlide(-1)">&#10094;</button>
+        <button class="seta proximo" onclick="mudarSlide(1)">&#10095;</button>
+
+        <div class="indicadores">
+            <span class="ponto ativo" onclick="mostrarSlide(0)"></span>
+            <span class="ponto" onclick="mostrarSlide(1)"></span>
+            <span class="ponto" onclick="mostrarSlide(2)"></span>
+        </div>
+
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="beneficios">
+
+        <div class="beneficio">
+            <h3> Produtos Naturais</h3>
+            <p>Cuidados com ingredientes selecionados.</p>
+        </div>
+
+        <div class="beneficio">
+            <h3> Sustentabilidade</h3>
+            <p>Mais consciência e cuidado com o planeta.</p>
+        </div>
+
+        <div class="beneficio">
+            <h3> Qualidade</h3>
+            <p>Produtos pensados para o seu bem-estar.</p>
+        </div>
+
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="produtos" id="produtos">
+
+        <div class="titulo-secao">
+            <h2>Nossos Produtos</h2>
+            <p>Conheça nossa linha de cosméticos naturais.</p>
+        </div>
+
+        <div id="lista-produtos">
+            Carregando produtos...
+        </div>
+
+    </section>
+
+    <!-- CARRINHO -->
+    <section class="carrinho" id="carrinho">
+
+        <div class="titulo-secao">
+            <h2>🛒 Meu Carrinho</h2>
+            <p>Confira os produtos escolhidos.</p>
+        </div>
+
+        <div id="lista-carrinho">
+            <p>Seu carrinho está vazio.</p>
+        </div>
+
+        <div class="resumo-carrinho">
+            <h3>
+                Total:
+                <span id="total">R$ 0,00</span>
+            </h3>
+
+            <button class="botao-carrinho" id="finalizar-compra">
+                Finalizar compra
+            </button>
+        </div>
+
+    </section>
+
+    <!-- PAGAMENTO -->
+    <section class="pagamento" id="pagamento" style="display: none;">
+
+        <h2>Finalizar Pedido</h2>
+
+        <p>Escolha a forma de pagamento:</p>
+
+        <select id="forma-pagamento">
+            <option value="">Selecione</option>
+            <option value="pix">PIX</option>
+            <option value="cartao">Cartão</option>
+            <option value="boleto">Boleto</option>
+        </select>
+
+        <div id="dados-pagamento"></div>
+
+        <button id="confirmar-pagamento">
+            Confirmar pedido
+        </button>
+
+    </section>
+
+    <!-- SOBRE -->
+    <section class="sobre" id="sobre">
+
+        <div class="sobre-texto">
+            <h2>Sobre a BioCosmetics</h2>
+
+            <p>
+                A BioCosmetics é uma loja de cosméticos que busca unir
+                beleza, cuidado pessoal e sustentabilidade.
+            </p>
+
+            <p>
+                Nossa proposta é oferecer produtos para quem deseja
+                cuidar da pele e dos cabelos com mais consciência,
+                valorizando escolhas que respeitam o meio ambiente.
+            </p>
+
+            <p>
+                Beleza que faz bem para você e para o planeta!
+            </p>
+        </div>
+
+        <div class="sobre-imagem">
+            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600" alt="Produtos BioCosmetics">
+        </div>
+
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <h2> BioCosmetics</h2>
+        <p>Beleza natural, cuidado e sustentabilidade.</p>
+        <p> 2026 BioCosmetics - Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script src="app.js"></script>
+
 </body>
 </html>
