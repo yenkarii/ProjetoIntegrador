@@ -36,14 +36,14 @@ app.get('/', (req, res) => {
 
 // -------- ROTAS ----------
 
-app.use('/clientes/', clienteRoutes);
-app.use('/enderecos/', enderecoRoutes);
-app.use('/categorias/', categoriaRoutes);
-app.use('/produtos/', produtoRoutes);
-app.use('/carrinhos/', carrinhoRoutes);
-app.use('/pedidos/', pedidoRoutes);
-app.use('/itens-pedidos/', itemPedidoRoutes);
-app.use('/notas-fiscais/', notaFiscalRoutes);
+app.use('/clientes', clienteRoutes);
+app.use('/enderecos', enderecoRoutes);
+app.use('/categorias', categoriaRoutes);
+app.use('/produtos', produtoRoutes);
+app.use('/carrinhos', carrinhoRoutes);
+app.use('/pedidos', pedidoRoutes);
+app.use('/itens-pedidos', itemPedidoRoutes);
+app.use('/notas-fiscais', notaFiscalRoutes);
 
 // ------- FIM DAS ROTAS ----------------
 
