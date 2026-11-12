@@ -63,7 +63,7 @@ CREATE TABLE item_pedido(
 
 CREATE TABLE nota_fiscal(
 	id_nota INT AUTO_INCREMENT PRIMARY KEY,
-	id_pedido INT NOT NULL UNIQUE,s
+	id_pedido INT NOT NULL UNIQUE,
 	numero_nota VARCHAR(50) NOT NULL UNIQUE,
 	data_emissao DATETIME DEFAULT CURRENT_TIMESTAMP,
 	valor_total DECIMAL (10,2) NOT NULL,
