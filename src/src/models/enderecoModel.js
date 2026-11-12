@@ -1,13 +1,18 @@
 import conn from "../../db.js";
 
 export async function listar() {
-    const sql = 'SELECT * FROM endereco ORDER BY id_endereco';
+    const sql = `SELECT endereco.*, cliente.nome FROM endereco 
+    INNER JOIN cliente ON endereco.id_cliente = cliente.id_cliente 
+    ORDER BY endereco.id_endereco`;
     const [resp] = await conn.promise().query(sql);
     return resp;
 }
 
 export async function buscarPorId(id) {
-    const sql = 'SELECT * FROM endereco WHERE id_endereco = ?'
+        const sql = `SELECT endereco.*, cliente.nome FROM endereco 
+        INNER JOIN cliente ON endereco.id_cliente = cliente.id_cliente
+        WHERE id_endereco = ?
+        ORDER BY endereco.id_endereco`;
     const [resp] = await conn.promise().query(sql, [id]);
     return resp;
 }
