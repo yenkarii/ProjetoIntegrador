@@ -1,3 +1,4 @@
+git add .
 CREATE DATABASE IF NOT EXISTS projeto_integrador;
 USE projeto_integrador;
 
