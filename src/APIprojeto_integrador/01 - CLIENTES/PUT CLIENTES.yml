@@ -5,15 +5,15 @@ info:
 
 http:
   method: PUT
-  url: http://localhost:3000/clientes/1
+  url: http://localhost:3000/clientes/2
   body:
     type: json
     data: |-
       {
-        "nome": "Iago Bobão",
-        "email": "iagobobo@gmail.org",
-        "senha": "vivaatrollage",
-        "cpf": "67415987461"
+        "nome": "Toninho",
+        "email": "toninho@gmail.com",
+        "senha": "yekidcudi",
+        "cpf": "56260017863"
       }
   auth: inherit
 

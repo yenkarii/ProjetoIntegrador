@@ -1,4 +1,3 @@
-
 // PRODUTOS DA LOJA
 const produtos = [
     { id: 1, nome: "Sabonete Natural", preco: 25.00, imagem: "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=500" },
@@ -241,3 +240,20 @@ setInterval(function() {
 // INICIAR SITE
 mostrarProdutos();
 mostrarCarrinho();
+
+// Verificar Login
+function verificarLogin() {
+    const clienteSalvo = localStorage.getItem("clienteLogado");
+    const botaoEntrar = document.querySelector('nav a[href="login.html"]');
+
+    if (clienteSalvo) {
+        const cliente = JSON.parse(clienteSalvo);
+
+        if(botaoEntrar) {
+            botaoEntrar.style.display = "none";
+        }
+
+    }
+}
+
+verificarLogin();

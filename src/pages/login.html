@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - BioCosmetics</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="shortcut icon" href="favicon.webp" type="image/x-icon">
 </head>
 
 <body class="pagina-login">
@@ -44,6 +44,9 @@
             <button type="submit">Entrar</button>
 
         </form>
+         <p style="padding: 10px;" class="redirect-signup">
+            Não possui um cadastro? <span><a href="signup.html">Cadastre-se</a></span>
+        </p>
 
         <p class="voltar">
             <a href="index.html">Voltar para a loja</a>
@@ -52,22 +55,45 @@
     </div>
 
     <script>
+        // pega os elementos do html pelo id deles
         const formulario = document.getElementById("form-login");
-        const senha = document.getElementById("senha");
+        const senhaInput = document.getElementById("senha");
         const mostrarSenha = document.getElementById("mostrarSenha");
 
+        // faz o checkbox de "mostrar senha" funcionar
         mostrarSenha.addEventListener("change", function() {
             if (mostrarSenha.checked) {
-                senha.type = "text";
+                senhaInput.type = "text";
             } else {
-                senha.type = "password";
+                senhaInput.type = "password";
             }
         });
 
-        formulario.addEventListener("submit", function(event) {
+        formulario.addEventListener("submit", async function(event) {
             event.preventDefault();
 
-            alert("Login demonstrativo realizado com sucesso!");
+            // pega o texto dos campos de email e senha e salva eles em uma const
+            const email = document.getElementById("email").value.trim();
+            const senha = senhaInput.value.trim();
+
+            try{
+                // fetch é o "carteiro" do navegador. leva os dados até a rota designada do MVC importada no server.js :)
+
+                const resp = await fetch("http://localhost:3000/clientes");
+                const clientes = await resp.json();
+                const clienteEncontrado = clientes.find(c => c.email === email && c.senha === senha)
+
+                if(clienteEncontrado){
+                    localStorage.setItem("clienteLogado", JSON.stringify(clienteEncontrado));
+                    alert("Login realizado!");
+                    window.location.href = "index.html";
+                } else {
+                    alert("E-mail ou senha incorretos!");
+                }
+            } catch(erro){
+                console.error("Erro ao conectar:", erro);
+                alert("Erro ao conectar com o servidor. Veja se o server.js está rodando!");
+            }
         });
     </script>
 
