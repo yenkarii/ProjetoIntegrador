@@ -12,7 +12,8 @@ http:
       {
         "nome": "Iago Bobão",
         "email": "iagobobo@gmail.org",
-        "senha": "vivaatrollage"
+        "senha": "vivaatrollage",
+        "cpf": "67415987461"
       }
   auth: inherit
 

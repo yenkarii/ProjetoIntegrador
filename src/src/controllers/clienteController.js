@@ -26,12 +26,12 @@ export async function buscarPorId(req, res) {
 }
 
 export async function criar(req, res) {
-    const { nome, email, senha } = req.body ?? {};
-    if (!nome || !email || !senha) {
-        return res.status(400).json({ erro: "Infome nome (até 100 characteres), email (até 100 caracteres) e senha (até 255 caracteres) para o cadastro!" });
+    const { nome, email, senha, cpf } = req.body ?? {};
+    if (!nome || !email || !senha || !cpf) {
+        return res.status(400).json({ erro: "Infome nome (até 100 characteres), email (até 100 caracteres), senha (até 255 caracteres) e CPF para o cadastro!" });
     }
     try {
-        const resp = await clienteModel.criar({ nome, email, senha });
+        const resp = await clienteModel.criar({ nome, email, senha, cpf });
 
         return res.status(201).json({
             mensagem: "Cliente cadastrado com sucesso!",
@@ -45,12 +45,12 @@ export async function criar(req, res) {
 
 export async function atualizar(req, res) {
     const id = req.id || Number(req.params.id);
-    const { nome, email, senha } = req.body ?? {};
-    if (!nome || !email || !senha) {
-        return res.status(400).json({ erro: "Infome nome (até 100 characteres), email (até 100 caracteres) e senha (até 255 caracteres) para a atualização!" });
+    const { nome, email, senha, cpf } = req.body ?? {};
+    if (!nome || !email || !senha || !cpf) {
+        return res.status(400).json({ erro: "Infome nome (até 100 characteres), email (até 100 caracteres), senha (até 255 caracteres) e CPF para a atualização!" });
     }
     try {
-        const resp = await clienteModel.atualizar(id, { nome, email, senha });
+        const resp = await clienteModel.atualizar(id, { nome, email, senha, cpf });
 
         return res.status(201).json({
             mensagem: "Cliente atualizado com sucesso!",
@@ -69,7 +69,7 @@ export async function deletar(req, res) {
         if (resp.length === 0 || !resp) {
             return res.status(404).json({ erro: "Cliente não encontrado ou inexistente!" });
         }
-        return res.status(201).json({mensagem: "Cadastro de cliente excluído com sucesso!"});
+        return res.status(201).json({mensagem: "Cliente excluído com sucesso!"});
     } catch (erro) {
         console.error(erro);
         return res.status(500).json({erro: "Erro interno ao tentar deletar o cadastro de um cliente!"});

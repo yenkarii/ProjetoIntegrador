@@ -15,14 +15,14 @@ export async function buscarPorId(id) {
 }
 
 export async function criar(dados) {
-    const sql = 'INSERT INTO cliente (nome, email, senha) VALUES (?, ?, ?)';
-    const [resp] = await conn.promise().query(sql,[dados.nome, dados.email, dados.senha]);
+    const sql = 'INSERT INTO cliente (nome, email, senha, cpf) VALUES (?, ?, ?, ?)';
+    const [resp] = await conn.promise().query(sql,[dados.nome, dados.email, dados.senha, dados.cpf]);
     return resp.insertId;
 }
 
 export async function atualizar(id, dados) {
-    const sql = 'UPDATE cliente SET nome = ?, email = ?, senha = ? WHERE id_cliente = ?';
-    const [resp] = await conn.promise().query(sql,[dados.nome, dados.email, dados.senha, id]);
+    const sql = 'UPDATE cliente SET nome = ?, email = ?, senha = ?, cpf = ? WHERE id_cliente = ?';
+    const [resp] = await conn.promise().query(sql,[dados.nome, dados.email, dados.senha, dados.cpf, id]);
     return resp.affectedRows;
 }   
 

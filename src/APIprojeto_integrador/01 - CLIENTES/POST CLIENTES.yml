@@ -12,7 +12,8 @@ http:
       {
         "nome": "Iago Damazio",
         "email": "iagobrdab@sexo.org",
-        "senha": "orgédeorgia"
+        "senha": "orgédeorgia",
+        "cpf": "46530019834"
       }
   auth: inherit
 
@@ -21,4 +22,3 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
-​
