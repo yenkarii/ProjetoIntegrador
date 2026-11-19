@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioCosmetics</title>
     <link rel="stylesheet" href="main.css">
-    <link rel="shortcut icon" href="favicon.webp" type="image/x-icon">
+
 </head>
 
 <body>
@@ -18,12 +17,15 @@
             <h1>BioCosmetics</h1>
         </div>
 
-        <nav>
+        <nav class="main-nav">
             <a href="#inicio">INÍCIO</a>
             <a href="#produtos">PRODUTOS</a>
             <a href="#sobre">SOBRE</a>
+        </nav>
+        <nav class="side-nav">
+            <a href="#carrinho"><img src="assets/imgs/carrinho.png" style="width: 30px;"></a>
+            <a href="signup.html">CADASTRAR</a>
             <a href="login.html">ENTRAR</a>
-            <a href="#carrinho">🛒</a>
         </nav>
     </header>
 
@@ -41,7 +43,8 @@
         </div>
 
         <div class="slide">
-            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=1200" alt="Produtos de cuidados pessoais">
+            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=1200"
+                alt="Produtos de cuidados pessoais">
 
             <div class="texto-slide">
                 <h2>Cuide da sua pele!</h2>
@@ -124,7 +127,7 @@
             </h3>
 
             <button class="botao-carrinho" id="finalizar-compra">
-                FINALIZAR COMPRAgit 
+                FINALIZAR COMPRA
             </button>
         </div>
 
@@ -156,7 +159,7 @@
     <section class="sobre" id="sobre">
 
         <div class="sobre-texto">
-            <h2>Sobre a BioCosmetics</h2>
+            <h2>SOBRE NÓS</h2>
 
             <p>
                 A BioCosmetics é uma loja de cosméticos que busca unir
@@ -170,7 +173,7 @@
             </p>
 
             <p>
-                 Beleza que faz bem para você e para o planeta!
+                Beleza que faz bem para você e para o planeta!
             </p>
         </div>
 
@@ -190,4 +193,5 @@
     <script src="app.js"></script>
 
 </body>
+
 </html>

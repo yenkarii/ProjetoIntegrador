@@ -214,25 +214,39 @@ document.getElementById("confirmar-pagamento").addEventListener("click", functio
 
 // CARROSSEL
 let slideAtual = 0;
+let intervaloSlide;
 
 function mostrarSlide(numero) {
     let slides = document.querySelectorAll(".slide");
     let pontos = document.querySelectorAll(".ponto");
 
+    // Limpa marcações antigas antes de trocar
+    slides.forEach(slide => slide.classList.remove("anterior-slide"));
+
+    // O slide atual deixa de ser ativo e vira o "fundo" da transição
     slides[slideAtual].classList.remove("ativo");
+    slides[slideAtual].classList.add("anterior-slide");
     pontos[slideAtual].classList.remove("ativo");
 
     slideAtual = (numero + slides.length) % slides.length;
 
+    // O slide novo assume o topo e dispara a animação de fade in
+    slides[slideAtual].classList.remove("anterior-slide");
     slides[slideAtual].classList.add("ativo");
     pontos[slideAtual].classList.add("ativo");
+
+clearInterval(intervaloSlide);
+    intervaloSlide = setInterval(function() {
+        mudarSlide(1);
+    }, 5000);
 }
 
 function mudarSlide(direcao) {
     mostrarSlide(slideAtual + direcao);
 }
 
-setInterval(function() {
+// Inicia o cronômetro pela primeira vez quando a página abre
+intervaloSlide = setInterval(function() {
     mudarSlide(1);
 }, 5000);
 
@@ -241,18 +255,43 @@ setInterval(function() {
 mostrarProdutos();
 mostrarCarrinho();
 
-// Verificar Login
+// VERIFICAR LOGIN 
 function verificarLogin() {
     const clienteSalvo = localStorage.getItem("clienteLogado");
+    const botaoCadastrar = document.querySelector('nav a[href="signup.html"]');
     const botaoEntrar = document.querySelector('nav a[href="login.html"]');
+    const botaoCarrinho = document.querySelector('nav a[href="#carrinho"]');
 
     if (clienteSalvo) {
         const cliente = JSON.parse(clienteSalvo);
 
-        if(botaoEntrar) {
-            botaoEntrar.style.display = "none";
+        if(botaoCadastrar) {
+            botaoCadastrar.style.display = "none";
         }
+        // mudar o "ENTRAR" pelo primeiro nome do usuário e foto de perfil
+        if(botaoEntrar) {
+            const primeiroNome = cliente.nome ? cliente.nome.split(" ")[0] : "Cliente";
+            botaoEntrar.style.gap = '8px';
 
+            botaoEntrar.innerHTML = `
+            <img src="assets/imgs/defaultpfp.jpg" alt="Perfil" style="width: 26px; height: 26px; border-radius: 50%; object-fit: cover;">
+            <span>Olá, ${primeiroNome} (Sair)</span>
+            `
+
+            botaoEntrar.addEventListener("click", function(event) {
+                event.preventDefault();
+                localStorage.removeItem("clienteLogado");
+                window.location.reload();
+            });
+        }
+    } else {
+        if(botaoCarrinho) {
+            botaoCarrinho.addEventListener("click", function(event) {
+                event.preventDefault();
+                alert("Faça login para acessar o carrinho!");
+                window.location.href = "login.html";
+            })
+        }
     }
 }
 
