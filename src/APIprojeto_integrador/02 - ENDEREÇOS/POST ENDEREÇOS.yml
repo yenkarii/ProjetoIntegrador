@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "id_cliente": "2",
-        "rua": "Rua da Putaria",
+        "id_cliente": "1",
+        "rua": "Rua Dutra",
         "numero": "69",
         "cidade": "Carapicuíba",
         "cep": "696969-696"

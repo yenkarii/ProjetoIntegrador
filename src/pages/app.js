@@ -126,6 +126,12 @@ function mostrarCarrinho() {
 
 // ABRIR PAGAMENTO
 document.getElementById("finalizar-compra").addEventListener("click", function() {
+    if(!localStorage.getItem("clienteLogado")) {
+        alert("Faça login para finalizar a compra!");
+        window.location.href = "login.html";
+        return;
+
+    }
     if (carrinho.length === 0) {
         alert("Seu carrinho está vazio!");
         return;
@@ -261,7 +267,7 @@ function verificarLogin() {
     const botaoCadastrar = document.querySelector('nav a[href="signup.html"]');
     const botaoEntrar = document.querySelector('nav a[href="login.html"]');
     const botaoCarrinho = document.querySelector('nav a[href="#carrinho"]');
-
+    
     if (clienteSalvo) {
         const cliente = JSON.parse(clienteSalvo);
 
@@ -290,7 +296,7 @@ function verificarLogin() {
                 event.preventDefault();
                 alert("Faça login para acessar o carrinho!");
                 window.location.href = "login.html";
-            })
+            });
         }
     }
 }

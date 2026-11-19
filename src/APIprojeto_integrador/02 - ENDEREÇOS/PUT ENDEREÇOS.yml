@@ -11,7 +11,7 @@ http:
     data: |-
       {
         "id_cliente": "2",
-        "rua": "Rua da Putaria",
+        "rua": "Rua Dutra",
         "numero": "69",
         "cidade": "Carapicuíba",
         "cep": "696969-696"
