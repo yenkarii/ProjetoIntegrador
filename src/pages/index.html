@@ -176,7 +176,7 @@
 
         // Dispara automaticamente enquanto a pessoa digita o CPF
         inputCpf.addEventListener("input", async function () {
-            const cpf = inputCpf.value.replace(/\D/g, "").trim();
+            const cpf = inputCpf.value.replace(/\D/g, "").trim(); 
 
             // Só consulta o banco quando completar os 11 dígitos do CPF
             if (cpf.length !== 11) return;

@@ -22,14 +22,14 @@ export async function buscarPorId(id) {
 }
 
 export async function criar(dados) {
-    const sql = 'INSERT INTO produto (id_categoria, nome, preco, estoque) VALUES (?, ?, ?, ?)';
-    const [resp] = await conn.promise().query(sql, [dados.id_categoria, dados.nome, dados.preco, dados.estoque]);
+    const sql = 'INSERT INTO produto (id_categoria, nome, preco, estoque, imagem) VALUES (?, ?, ?, ?)';
+    const [resp] = await conn.promise().query(sql, [dados.id_categoria, dados.nome, dados.preco, dados.estoque, dados.imagem]);
     return resp.insertId;
 }
 
 export async function atualizar(id, dados) {
-    const sql = 'UPDATE produto SET id_categoria = ?, nome = ?, preco = ?, estoque = ?';
-    const [resp] = await conn.promise().query(sql, [dados.id_categoria, dados.nome, dados.preco, dados.estoque]);
+    const sql = 'UPDATE produto SET id_categoria = ?, nome = ?, preco = ?, estoque = ?, imagem = ? WHERE id_produto = ?';
+    const [resp] = await conn.promise().query(sql, [dados.id_categoria, dados.nome, dados.preco, dados.estoque, dados.imagem, id]);
     return resp.affectedRows;
 }
 

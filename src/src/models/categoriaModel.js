@@ -21,8 +21,8 @@ export async function criar(dados) {
 }
 
 export async function atualizar(id, dados) {
-    const sql = 'UPDATE categoria SET nome = ?';
-    const [resp] = await conn.promise().query(sql,[dados.nome]);
+    const sql = 'UPDATE categoria SET nome = ? WHERE id_categoria = ?';
+    const [resp] = await conn.promise().query(sql,[dados.nome, id]);
     return resp.affectedRows;
 }
 

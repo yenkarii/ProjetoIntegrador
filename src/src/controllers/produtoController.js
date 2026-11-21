@@ -26,12 +26,12 @@ export async function buscarPorId(req, res) {
 }
 
 export async function criar(req, res) {
-    const { id_categoria, nome, preco, estoque } = req.body ?? {};
-    if (!id_categoria || !nome || !preco || !estoque) {
-        return res.status(400).json({ erro: "Informe id da categoria, nome do produto (até 100 caracteres), preço o e estoque para o cadastro!" });
+    const { id_categoria, nome, preco, estoque, imagem } = req.body ?? {};
+    if (!id_categoria || !nome || !preco || !estoque || !imagem) {
+        return res.status(400).json({ erro: "Informe id da categoria, nome do produto (até 100 caracteres), preço, estoque e a URL da imagem do produto para o cadastro!" });
     }
     try {
-        const resp = await produtoModel.criar({ id_categoria, nome, preco, estoque });
+        const resp = await produtoModel.criar({ id_categoria, nome, preco, estoque, imagem });
 
         return res.status(201).json({
             mensagem: "Produto cadastrado com sucesso!",
@@ -45,12 +45,12 @@ export async function criar(req, res) {
 
 export async function atualizar(req, res) {
     const id = req.id || Number(req.params.id);
-    const { id_categoria, nome, preco, estoque } = req.body ?? {};
-    if (!id_categoria || !nome || !preco || !estoque) {
-        return res.status(400).json({ erro: "Informe id da categoria, nome do produto (até 100 caracteres), preço o e estoque para o cadastro!" });
+    const { id_categoria, nome, preco, estoque, imagem} = req.body ?? {};
+    if (!id_categoria || !nome || !preco || !estoque || !imagem) {
+        return res.status(400).json({ erro: "Informe id da categoria, nome do produto (até 100 caracteres), preço, estoque e a URL para a atualização!" });
     }
     try {
-        const resp = await produtoModel.atualizar(id, { id_categoria, nome, preco, estoque });
+        const resp = await produtoModel.atualizar(id, { id_categoria, nome, preco, estoque, imagem });
 
         return res.status(201).json({
             mensagem: "Produto atualizado com sucesso!",

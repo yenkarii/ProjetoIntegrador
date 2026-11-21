@@ -24,8 +24,8 @@ export async function criar(dados) {
 }
 
 export async function atualizar(id, dados) {
-    const sql = 'UPDATE endereco SET id_cliente = ?, rua = ?, numero = ?, cidade = ?, cep = ?';
-    const [resp] = await conn.promise().query(sql,[dados.id_cliente, dados.rua, dados.numero, dados.cidade, dados.cep]);
+    const sql = 'UPDATE endereco SET id_cliente = ?, rua = ?, numero = ?, cidade = ?, cep = ? WHERE id_endereco = ?';
+    const [resp] = await conn.promise().query(sql,[dados.id_cliente, dados.rua, dados.numero, dados.cidade, dados.cep, id]);
     return resp.affectedRows;
 }
 
