@@ -170,59 +170,6 @@
 
     </section>
 
-    <script>
-        const inputCpf = document.getElementById("cpf");
-        let idClienteAtual = null; // Guarda o ID encontrado para usar depois na hora de salvar o pedido
-
-        // Dispara automaticamente enquanto a pessoa digita o CPF
-        inputCpf.addEventListener("input", async function () {
-            const cpf = inputCpf.value.replace(/\D/g, "").trim(); 
-
-            // Só consulta o banco quando completar os 11 dígitos do CPF
-            if (cpf.length !== 11) return;
-
-            try {
-                // Busca o cliente pelo CPF
-                const resp = await fetch("http://localhost:3000/clientes");
-                const clientes = await resp.json();
-                const clienteEncontrado = clientes.find(c => c.cpf === cpf);
-
-                if (clienteEncontrado) {
-                    // AQUI TÁ O ID DO CLIENTE NO SQL!
-                    idClienteAtual = clienteEncontrado.id_cliente;
-
-                    // Busca na rota de endereços se já existe algo ligado a esse id_cliente
-                    // (Confira no seu server.js se a rota é /enderecos ou /endereco)
-                    const respEnd = await fetch("http://localhost:3000/enderecos");
-                    const enderecos = await respEnd.json();
-
-                    // Procura um endereço onde o id_cliente seja igual ao do cliente encontrado
-                    const enderecoEncontrado = enderecos.find(e => e.id_cliente === idClienteAtual);
-
-                    if (enderecoEncontrado) {
-                        // Se achou no banco, preenche as caixinhas sozinho
-                        document.getElementById("cep").value = enderecoEncontrado.cep;
-                        document.getElementById("rua").value = enderecoEncontrado.rua;
-                        document.getElementById("numero").value = enderecoEncontrado.numero;
-                        document.getElementById("cidade").value = enderecoEncontrado.cidade;
-                    } else {
-                        // Se não achou, limpa os campos para o usuário preencher
-                        document.getElementById("cep").value = "";
-                        document.getElementById("rua").value = "";
-                        document.getElementById("numero").value = "";
-                        document.getElementById("cidade").value = "";
-                        alert("Nenhum endereço cadastrado para este CPF. Preencha os dados de entrega abaixo!");
-                    }
-                } else {
-                    idClienteAtual = null;
-                    alert("CPF não encontrado no cadastro!");
-                }
-            } catch (erro) {
-                console.error("Erro ao buscar cliente/endereço:", erro);
-            }
-        });
-    </script>
-
     <!-- SOBRE -->
     <section class="sobre" id="sobre">
 
