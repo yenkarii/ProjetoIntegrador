@@ -24,14 +24,14 @@ app.use(cors());
 // permitir json no corpo da requisição
 app.use(express.json());
 // definir a pasta de arquivos estáticos (frontend)
-app.use(express.static('./pages'));
+app.use(express.static('./docs'));
 // define a porta do servidor que será hosteado
 const PORT = Number(process.env.PORT || 3000);
 // variável de conexão
 
 // página inicial frontend
 app.get('/', (req, res) => {
-    res.sendFile("index.html", { root: "./pages" })
+    res.sendFile("index.html", { root: "./docs" })
 })
 
 // -------- ROTAS ----------
