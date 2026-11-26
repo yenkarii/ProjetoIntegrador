@@ -31,6 +31,7 @@ CREATE TABLE produto (
 	nome VARCHAR(100) NOT NULL,
 	preco DECIMAL(10,2) NOT NULL,
 	estoque INT NOT NULL DEFAULT 0,
+	imagem VARCHAR(225),
 	FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 );
 
